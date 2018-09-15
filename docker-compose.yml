@@ -3,7 +3,7 @@ version: '3'
 services:
   php:
     container_name: php
-    image: laric/php-fpm
+    image: laric/php
     links:
       - postgres
     volumes:
@@ -26,7 +26,7 @@ services:
     links:
       - php
     ports:
-      - 9000:8000
+      - 8000:8000
     volumes:
       - ./app:/app
       - ./nginx/services:/etc/nginx/conf.d
