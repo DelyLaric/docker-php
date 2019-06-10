@@ -1,0 +1,5 @@
+/services/*
+!/services/example.conf
+/certs/*
+!/certs/example.pub
+!/certs/example.pem

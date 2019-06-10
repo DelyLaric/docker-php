@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  php:
+    container_name: php
+    image: laric/php
+    links:
+      - postgres
+    volumes:
+      - ./app:/app/logisp
+    tty: true
+
+  postgres:
+    container_name: postgres
+    image: postgres:12-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD:
+
+  nginx:
+    container_name: nginx
+    image: nginx:1.13.9-alpine
+    links:
+      - php
+    ports:
+      - 7000:8000
+    volumes:
+      - ./app:/app/logisp
+      - ./nginx/services:/etc/nginx/conf.d
+    tty: true
